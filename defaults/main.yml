@@ -178,6 +178,7 @@ nexus_config_gitlfs: false
 nexus_config_yum: false
 nexus_config_apt: false
 nexus_config_r: false
+nexus_config_conda: false
 
 nexus_content_selectors: []
 # example selector item :
@@ -252,7 +253,8 @@ nexus_blob_names:           # Splited blob name list @ blob_vars.yml
     blob: 'default'
   r:
     blob: 'default'
-
+  conda:
+    blob: 'default'
 
 nexus_blobstores: []
 # example blobstore item :
@@ -677,10 +679,6 @@ _nexus_repos_r_defaults:
 nexus_repos_r_proxy:
   - name: r-proxy
     remote_url: 'https://cran.r-project.org/'
-    # maximum_component_age: 1440
-    # maximum_metadata_age: 1440
-    # negative_cache_enabled: true
-    # negative_cache_ttl: 1440
 
 nexus_repos_r_hosted:
   - name: r-internal
@@ -692,3 +690,17 @@ nexus_repos_r_group:
     member_repos:
       - r-internal
       - r-proxy
+
+# conda support
+_nexus_repos_conda_defaults:
+  blob_store: "{{ nexus_blob_names.conda.blob }}"
+  strict_content_validation: true
+  maximum_component_age: 1440  # Nexus gui default. For proxies only
+  maximum_metadata_age: 1440  # Nexus gui default. For proxies only
+  negative_cache_enabled: true  # Nexus gui default. For proxies only
+  negative_cache_ttl: 1440  # Nexus gui default. For proxies only
+
+nexus_repos_conda_proxy:
+  - name: conda-proxy
+    remote_url: 'https://repo.continuum.io/pkgs/'
+

@@ -25,7 +25,8 @@ nexus_blob_names:
     blob: '{{ nexus_blob_prefix }}apt'  
   r:
     blob: '{{ nexus_blob_prefix }}r'
-
+  conda:
+    blob: '{{ nexus_blob_prefix }}conda'
 
 nexus_blobstores:
   - name: '{{ nexus_blob_prefix }}raw'
@@ -51,4 +52,6 @@ nexus_blobstores:
   - name: '{{ nexus_blob_prefix }}apt'
     path: "{{ nexus_data_dir }}/blobs/{{ nexus_blob_names.apt.blob }}"
   - name: '{{ nexus_blob_prefix }}r'
-    path: "{{ nexus_data_dir }}/blobs/{{ nexus_blob_names.r.blob }}"
+    path: "{{ nexus_data_dir }}/blobs/{{ nexus_blob_names.r.blob }}"  
+  - name: '{{ nexus_blob_prefix }}conda'
+    path: "{{ nexus_data_dir }}/blobs/{{ nexus_blob_names.conda.blob }}"
